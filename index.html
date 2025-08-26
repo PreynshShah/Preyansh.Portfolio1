@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Preyansh Shah - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <style>
+        /* =======================================================================
+           Base Reset
+        ======================================================================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        a { color: inherit; }
+
+        /* =======================================================================
+           AUTH PAGE (Register / Login)
+           - Replaces the old "Login Page"
+        ======================================================================= */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 520px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-box h1 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 24px;
+            font-size: .95rem;
+        }
+
+        .auth-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .auth-tab {
+            padding: 12px 14px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            background: #f8f9fa;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .25s ease;
+            user-select: none;
+        }
+
+        .auth-tab:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 18px rgba(102, 126, 234, 0.15);
+        }
+
+        .auth-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .input-group { margin-bottom: 16px; }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all .25s ease;
+            background: #f8f9fa;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .25s ease;
+            margin-top: 6px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .error-message,
+        .success-message {
+            margin-top: 12px;
+            font-size: 14px;
+            display: none;
+            padding: 10px 12px;
+            border-radius: 10px;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            background: #fdecea;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success-message {
+            color: #0f5132;
+            background: #d1e7dd;
+            border: 1px solid #badbcc;
+        }
+
+        .form-footnote {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        .form-footnote a {
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .form-footnote a:hover { text-decoration: underline; }
+
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+
+        /* =======================================================================
+           Portfolio (unchanged visuals)
+        ======================================================================= */
+        .portfolio-container { display: none; min-height: 100vh; }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed; top: 0; width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo {
+            font-size: 24px; font-weight: 700;
+            color: #667eea; text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex; list-style: none; gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none; color: #333; font-weight: 500;
+            transition: color 0.3s ease; padding: 10px 15px; border-radius: 8px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #667eea; background: rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-links .logout-link {
+            border: 2px solid rgba(102,126,234,.25);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            margin-top: 72px; /* prevent overlap with fixed navbar */
+        }
+
+        .hero-content { max-width: 800px; margin: 0 auto; }
+
+        .profile-image {
+            width: 180px; height: 180px; border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            object-fit: cover; margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 1.3rem; opacity: 0.9; margin-bottom: 30px; }
+
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+        .btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all .25s ease; border: 2px solid transparent; }
+        .btn-primary { background: white; color: #667eea; }
+        .btn-primary:hover { background: transparent; border-color: white; color: white; }
+        .btn-outline { background: transparent; border-color: white; color: white; }
+        .btn-outline:hover { background: white; color: #667eea; }
+
+        .section { padding: 80px 20px; background: white; }
+        .section:nth-child(even) { background: #f8f9fa; }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: #333; margin-bottom: 15px; }
+        .section-title p { color: #666; font-size: 1.1rem; }
+
+        .about-content {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+        }
+
+        .about-text h3 { font-size: 1.8rem; margin-bottom: 20px; color: #333; }
+        .about-text p { color: #666; line-height: 1.8; margin-bottom: 20px; }
+
+        .about-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+        .stat-item {
+            text-align: center; padding: 20px; background: white;
+            border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 10px; }
+        .stat-label { color: #666; font-weight: 500; }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: white; padding: 30px; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .skill-category h3 { color: #667eea; margin-bottom: 20px; font-size: 1.3rem; }
+
+        .skill-list { list-style: none; }
+
+        .skill-list li {
+            padding: 10px 0; border-bottom: 1px solid #eee;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .skill-list li:last-child { border-bottom: none; }
+
+        .skill-level {
+            background: #e9ecef; height: 6px; border-radius: 3px; width: 100px; overflow: hidden;
+        }
+
+        .skill-progress { height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 3px; }
+
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
+        }
+
+        .project-card {
+            background: white; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform .3s ease;
+        }
+
+        .project-card:hover { transform: translateY(-5px); }
+
+        .project-image {
+            height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;
+        }
+
+        .project-content { padding: 25px; }
+        .project-content h3 { color: #333; margin-bottom: 15px; font-size: 1.3rem; }
+        .project-content p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+
+        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tag { background: rgba(102,126,234,0.1); color: #667eea; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+
+        .project-link { color: #667eea; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
+        .project-link:hover { text-decoration: underline; }
+
+        .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+
+        .contact-info { display: flex; flex-direction: column; gap: 25px; }
+
+        .contact-item { display: flex; align-items: center; gap: 15px; }
+
+        .contact-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.2rem;
+        }
+
+        .contact-details h4 { color: #333; margin-bottom: 5px; }
+        .contact-details p { color: #666; }
+
+        .contact-form {
+            background: white; padding: 30px; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #333; font-weight: 600; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 15px; border: 2px solid #e1e5e9; border-radius: 10px; font-size: 16px; transition: border-color .3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #667eea; }
+        .form-group textarea { height: 120px; resize: vertical; }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; border: none; padding: 15px 30px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all .25s ease;
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102,126,234,0.3); }
+
+        .footer { background: #2c3e50; color: white; padding: 50px 20px 20px; }
+        .footer-content {
+            max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;
+        }
+
+        .footer-section h3 { color: #667eea; margin-bottom: 20px; font-size: 1.3rem; }
+        .footer-section p { color: #bdc3c7; line-height: 1.6; }
+
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-link {
+            width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: background .25s ease;
+        }
+        .social-link:hover { background: #667eea; }
+
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-bottom p { color: #bdc3c7; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-content, .contact-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .profile-image { width: 150px; height: 150px; }
+            .section { padding: 60px 20px; }
+        }
+
+        /* Page Navigation visibility */
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <!-- =======================================================================
+         AUTH PAGE (Register/Login)
+         - Shows Register on first visit, Login for returning users
+    ======================================================================= -->
+    <div class="login-container" id="authPage" aria-hidden="false">
+        <div class="login-box">
+            <h1>Welcome</h1>
+            <p class="login-subtitle">Create an account or sign in to view the portfolio.</p>
+
+            <div class="auth-tabs" role="tablist" aria-label="Authentication Tabs">
+                <div id="tab-register" class="auth-tab active" role="tab" aria-selected="true" tabindex="0" onclick="switchAuthTab('register')">
+                    <i class="fas fa-user-plus"></i> Register
+                </div>
+                <div id="tab-login" class="auth-tab" role="tab" aria-selected="false" tabindex="0" onclick="switchAuthTab('login')">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form active" onsubmit="handleRegister(event)" novalidate aria-labelledby="tab-register">
+                <div class="input-group">
+                    <label for="regUsername">Username</label>
+                    <input type="text" id="regUsername" placeholder="Choose a username" autocomplete="username"/>
+                </div>
+                <div class="input-group">
+                    <label for="regEmail">Email (optional)</label>
+                    <input type="email" id="regEmail" placeholder="your@email.com" autocomplete="email"/>
+                </div>
+                <div class="input-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" placeholder="Create a password" autocomplete="new-password"/>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Retype your password" autocomplete="new-password"/>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-user-check"></i> Create Account
+                </button>
+                <div class="success-message" id="registerSuccess">
+                    <i class="fas fa-check-circle"></i> Account created! Logging you in…
+                </div>
+                <div class="error-message" id="registerError">
+                    <i class="fas fa-exclamation-circle"></i> Please fill all fields correctly.
+                </div>
+                <p class="form-footnote">Already have an account?
+                    <a href="#" onclick="switchAuthTab('login'); return false;">Login here</a>.
+                </p>
+            </form>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)" novalidate aria-labelledby="tab-login">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" autocomplete="username"/>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password"/>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <div class="error-message" id="loginError">
+                    <i class="fas fa-exclamation-circle"></i> Invalid username or password.
+                </div>
+                <p class="form-footnote">New here?
+                    <a href="#" onclick="switchAuthTab('register'); return false;">Create an account</a>.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         PORTFOLIO (unchanged content from your original)
+    ======================================================================= -->
+    <div class="portfolio-container" id="portfolioContainer" aria-hidden="true">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo">Preyansh Shah</a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#about" class="nav-link" onclick="showPage('about')">About</a></li>
+                    <li><a href="#skills" class="nav-link" onclick="showPage('skills')">Skills</a></li>
+                    <li><a href="#projects" class="nav-link" onclick="showPage('projects')">Projects</a></li>
+                    <li><a href="#contact" class="nav-link" onclick="showPage('contact')">Contact</a></li>
+                    <li><a href="#" class="nav-link logout-link" onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <section class="hero">
+                <div class="hero-content">
+                    <img src="images/My img.jpeg" alt="Preyansh Shah" class="profile-image">
+                    <h1 id="heroName">Preyansh Shah</h1>
+                    <p>Web Developer | AI & ML Enthusiast | Creative Designer</p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary" onclick="showPage('projects')">
+                            <i class="fas fa-briefcase"></i> View My Work
+                        </a>
+                        <a href="#contact" class="btn btn-outline" onclick="showPage('contact')">
+                            <i class="fas fa-envelope"></i> Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>What I Do</h2>
+                        <p>Transforming ideas into digital reality</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Available</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>About Me</h2>
+                        <p>Get to know me better</p>
+                    </div>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h3>Hello! I'm Preyansh Shah</h3>
+                            <p>
+                                I'm a passionate B.Tech AI and ML student with a strong foundation in web development 
+                                and design. I love creating modern, user-friendly websites that provide exceptional 
+                                user experiences.
+                            </p>
+                            <p>
+                                With expertise in both front-end and back-end technologies, I bring ideas to life 
+                                through clean code and innovative design solutions. I'm constantly learning and 
+                                exploring new technologies to stay at the forefront of web development.
+                            </p>
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">2025</div>
+                                <div class="stat-label">B.Tech Start Year</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2019</div>
+                                <div class="stat-label">Diploma Start Year</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">7+</div>
+                                <div class="stat-label">Technologies</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">∞</div>
+                                <div class="stat-label">Creativity</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Education</h2>
+                        <p>My academic journey</p>
+                    </div>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h3>B.Tech AI And ML</h3>
+                            <p>JG University (2025–2028)</p>
+                            <p>Currently pursuing my bachelor's degree in Artificial Intelligence and Machine Learning, 
+                               focusing on cutting-edge technologies and innovative solutions.</p>
+                        </div>
+                        <div class="about-text">
+                            <h3>Diploma Engineering</h3>
+                            <p>Govt. Polytechnic Gandhinagar (2019–2024)</p>
+                            <p>Completed my diploma with a strong foundation in engineering principles and practical 
+                               technical skills.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Skills Page -->
+        <div id="skills" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>My Skills</h2>
+                        <p>Technologies I work with</p>
+                    </div>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Frontend Development</h3>
+                            <ul class="skill-list">
+                                <li>HTML5 & CSS3 <span class="skill-level"><span class="skill-progress" style="width: 95%"></span></span></li>
+                                <li>JavaScript <span class="skill-level"><span class="skill-progress" style="width: 85%"></span></span></li>
+                                <li>React.js <span class="skill-level"><span class="skill-progress" style="width: 75%"></span></span></li>
+                                <li>Bootstrap <span class="skill-level"><span class="skill-progress" style="width: 90%"></span></span></li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Backend Development</h3>
+                            <ul class="skill-list">
+                                <li>Python <span class="skill-level"><span class="skill-progress" style="width: 88%"></span></span></li>
+                                <li>Node.js <span class="skill-level"><span class="skill-progress" style="width: 80%"></span></span></li>
+                                <li>PHP <span class="skill-level"><span class="skill-progress" style="width: 75%"></span></span></li>
+                                <li>MySQL <span class="skill-level"><span class="skill-progress" style="width: 85%"></span></span></li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Design & CMS</h3>
+                            <ul class="skill-list">
+                                <li>WordPress <span class="skill-level"><span class="skill-progress" style="width: 92%"></span></span></li>
+                                <li>Divi Theme <span class="skill-level"><span class="skill-progress" style="width: 90%"></span></span></li>
+                                <li>UI/UX Design <span class="skill-level"><span class="skill-progress" style="width: 85%"></span></span></li>
+                                <li>Figma <span class="skill-level"><span class="skill-progress" style="width: 78%"></span></span></li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Other Skills</h3>
+                            <ul class="skill-list">
+                                <li>Computer Hardware <span class="skill-level"><span class="skill-progress" style="width: 95%"></span></span></li>
+                                <li>Digital Marketing <span class="skill-level"><span class="skill-progress" style="width: 82%"></span></span></li>
+                                <li>Git & GitHub <span class="skill-level"><span class="skill-progress" style="width: 80%"></span></span></li>
+                                <li>Problem Solving <span class="skill-level"><span class="skill-progress" style="width: 90%"></span></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Projects Page -->
+        <div id="projects" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>My Projects</h2>
+                        <p>Some of my recent work</p>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="project-content">
+                                <h3>VKE Food Website</h3>
+                                <p>A modern food delivery website built with WordPress and custom CSS, featuring responsive design and user-friendly interface.</p>
+                                <div class="project-tags">
+                                    <span class="tag">WordPress</span>
+                                    <span class="tag">CSS</span>
+                                    <span class="tag">Responsive</span>
+                                </div>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="project-content">
+                                <h3>Portfolio Website</h3>
+                                <p>A responsive portfolio website built with HTML, CSS, and JavaScript, showcasing my skills and projects with modern design.</p>
+                                <div class="project-tags">
+                                    <span class="tag">HTML</span>
+                                    <span class="tag">CSS</span>
+                                    <span class="tag">JavaScript</span>
+                                </div>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="project-content">
+                                <h3>E-commerce Store</h3>
+                                <p>An online shopping platform with product catalog, cart functionality, and secure checkout process.</p>
+                                <div class="project-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Node.js</span>
+                                    <span class="tag">MongoDB</span>
+                                </div>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Get In Touch</h2>
+                        <p>Let's work together</p>
+                    </div>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <p>shahpreyansh8@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Phone</h4>
+                                    <p>+91 93750 22211</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Location</h4>
+                                    <p>Gujarat, India</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Availability</h4>
+                                    <p>Available for freelance work</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <h3>Send me a message</h3>
+                            <form onsubmit="event.preventDefault(); alert('Thanks! This demo form does not send yet.');">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" placeholder="Your Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" placeholder="Your Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" placeholder="Your Message"></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">
+                                    <i class="fas fa-paper-plane"></i> Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Preyansh Shah</h3>
+                    <p>Web Developer | AI & ML Enthusiast | Creative Designer</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#home" onclick="showPage('home')" style="color: #bdc3c7; text-decoration: none;">Home</a></p>
+                    <p><a href="#about" onclick="showPage('about')" style="color: #bdc3c7; text-decoration: none;">About</a></p>
+                    <p><a href="#projects" onclick="showPage('projects')" style="color: #bdc3c7; text-decoration: none;">Projects</a></p>
+                    <p><a href="#contact" onclick="showPage('contact')" style="color: #bdc3c7; text-decoration: none;">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p>Web Development</p>
+                    <p>WordPress Development</p>
+                    <p>UI/UX Design</p>
+                    <p>Digital Marketing</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Preyansh Shah. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        /* =========================================================================
+           UTIL: get & set users in localStorage
+        ========================================================================= */
+        function getUsers() {
+            try {
+                return JSON.parse(localStorage.getItem('users') || '{}');
+            } catch {
+                return {};
+            }
+        }
+
+        function setUsers(users) {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        function setLoggedInUser(usernameKey) {
+            localStorage.setItem('loggedInUser', usernameKey);
+        }
+
+        function getLoggedInUser() {
+            return localStorage.getItem('loggedInUser');
+        }
+
+        function clearLoggedInUser() {
+            localStorage.removeItem('loggedInUser');
+        }
+
+        /* =========================================================================
+           AUTH: Tab Switching
+        ========================================================================= */
+        function switchAuthTab(mode) {
+            const tabRegister = document.getElementById('tab-register');
+            const tabLogin = document.getElementById('tab-login');
+            const registerForm = document.getElementById('registerForm');
+            const loginForm = document.getElementById('loginForm');
+
+            if (mode === 'register') {
+                tabRegister.classList.add('active');
+                tabLogin.classList.remove('active');
+                registerForm.classList.add('active');
+                loginForm.classList.remove('active');
+                document.getElementById('regUsername').focus();
+            } else {
+                tabLogin.classList.add('active');
+                tabRegister.classList.remove('active');
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+                document.getElementById('username').focus();
+            }
+        }
+
+        /* =========================================================================
+           AUTH: Register
+        ========================================================================= */
+        function handleRegister(e) {
+            e.preventDefault();
+
+            const usernameRaw = document.getElementById('regUsername').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorBox = document.getElementById('registerError');
+            const successBox = document.getElementById('registerSuccess');
+
+            errorBox.style.display = 'none';
+            successBox.style.display = 'none';
+
+            if (!usernameRaw || !password || !confirmPassword) {
+                errorBox.innerHTML = '<i class="fas fa-exclamation-circle"></i> All required fields must be filled.';
+                errorBox.style.display = 'block';
+                return;
+            }
+
+            if (password.length < 4) {
+                errorBox.innerHTML = '<i class="fas fa-exclamation-circle"></i> Password must be at least 4 characters.';
+                errorBox.style.display = 'block';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorBox.innerHTML = '<i class="fas fa-exclamation-circle"></i> Passwords do not match.';
+                errorBox.style.display = 'block';
+                return;
+            }
+
+            const usernameKey = usernameRaw.toLowerCase();
+            const users = getUsers();
+
+            if (users[usernameKey]) {
+                errorBox.innerHTML = '<i class="fas fa-exclamation-circle"></i> Username already exists. Try logging in.';
+                errorBox.style.display = 'block';
+                switchAuthTab('login');
+                document.getElementById('username').value = usernameRaw;
+                return;
+            }
+
+            users[usernameKey] = {
+                username: usernameRaw,
+                email: email || '',
+                // Note: storing plaintext is not secure; for demo only.
+                password: password,
+                createdAt: new Date().toISOString()
+            };
+
+            setUsers(users);
+            setLoggedInUser(usernameKey);
+
+            // Success → show success box briefly, then open portfolio
+            successBox.style.display = 'block';
+            setTimeout(() => {
+                openPortfolio(usernameRaw);
+            }, 600);
+        }
+
+        /* =========================================================================
+           AUTH: Login
+        ========================================================================= */
+        function handleLogin(e) {
+            e.preventDefault();
+
+            const usernameRaw = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorBox = document.getElementById('loginError');
+
+            errorBox.style.display = 'none';
+
+            if (!usernameRaw || !password) {
+                errorBox.innerHTML = '<i class="fas fa-exclamation-circle"></i> Enter both username and password.';
+                errorBox.style.display = 'block';
+                return;
+            }
+
+            const usernameKey = usernameRaw.toLowerCase();
+            const users = getUsers();
+
+            if (!users[usernameKey] || users[usernameKey].password !== password) {
+                errorBox.innerHTML = '<i class="fas fa-exclamation-circle"></i> Invalid username or password.';
+                errorBox.style.display = 'block';
+                return;
+            }
+
+            setLoggedInUser(usernameKey);
+            openPortfolio(users[usernameKey].username || usernameRaw);
+        }
+
+        /* =========================================================================
+           APP: Open Portfolio / Logout
+        ========================================================================= */
+        function openPortfolio(displayName) {
+            // Hide auth, show portfolio
+            document.getElementById('authPage').style.display = 'none';
+            const portfolio = document.getElementById('portfolioContainer');
+            portfolio.style.display = 'block';
+
+            // Personalize (optional)
+            const heroName = document.getElementById('heroName');
+            if (heroName && displayName) {
+                heroName.textContent = 'Welcome, ' + displayName + '!';
+                // revert back to actual name after a moment
+                setTimeout(() => { heroName.textContent = 'Preyansh Shah'; }, 2000);
+            }
+
+            // Default page
+            showPage('home');
+        }
+
+        function logout() {
+            clearLoggedInUser();
+            // Reset forms
+            (document.getElementById('registerForm') || {}).reset?.();
+            (document.getElementById('loginForm') || {}).reset?.();
+
+            // Show auth again
+            document.getElementById('portfolioContainer').style.display = 'none';
+            document.getElementById('authPage').style.display = 'flex';
+
+            // If at least one user exists, default to login tab
+            const users = getUsers();
+            if (Object.keys(users).length > 0) {
+                switchAuthTab('login');
+            } else {
+                switchAuthTab('register');
+            }
+        }
+
+        /* =========================================================================
+           NAV: Page switching inside Portfolio
+        ========================================================================= */
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            const pageEl = document.getElementById(pageId);
+            if (pageEl) pageEl.classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            const navLink = document.querySelector(`.nav-link[href="#${pageId}"]`);
+            if (navLink) navLink.classList.add('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('click', function (e) {
+            const anchor = e.target.closest('a[href^="#"]');
+            if (!anchor) return;
+            const href = anchor.getAttribute('href');
+            if (!href || href === '#') return;
+
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        // Enter key submits the visible auth form
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const regVisible = document.getElementById('registerForm').classList.contains('active');
+                if (regVisible) {
+                    handleRegister(e);
+                } else {
+                    handleLogin(e);
+                }
+            }
+        });
+
+        /* =========================================================================
+           INIT: Decide which auth tab to show & auto-login if already logged in
+        ========================================================================= */
+        (function init() {
+            const logged = getLoggedInUser();
+            const users = getUsers();
+
+            if (logged && users[logged]) {
+                // Already logged in; go straight to portfolio
+                openPortfolio(users[logged].username || logged);
+                return;
+            }
+
+            // Otherwise show auth; default tab depends on whether any user exists
+            document.getElementById('authPage').style.display = 'flex';
+            if (Object.keys(users).length > 0) {
+                switchAuthTab('login');
+            } else {
+                switchAuthTab('register');
+            }
+        })();
+    </script>
+</body>
+</html>
