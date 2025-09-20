@@ -1,5 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI-Powered Train Traffic Control | Maximize Section Throughput</title>
+    <meta name="description" content="AI-powered precise train traffic control to maximize section throughput, reduce delays, and improve headway reliability with real-time optimization." />
+    <link rel="canonical" href="https://example.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI-Powered Train Traffic Control" />
+    <meta property="og:description" content="Maximize section throughput using AI-powered precise train traffic control." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:image" content="assets/img/og-cover.svg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI-Powered Train Traffic Control" />
+    <meta name="twitter:description" content="Maximize section throughput using AI-powered precise train traffic control." />
+    <meta name="twitter:image" content="assets/img/og-cover.svg" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/logo.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] },
+            colors: {
+              brand: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                200: '#bfdbfe',
+                300: '#93c5fd',
+                400: '#60a5fa',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha256-kTq4kQ0H4B6c8B4g1sX36YYI1mS9o7bV1wKk2ZzP9qU=" crossorigin="anonymous"></script>
+
+    <style>
+      :root { color-scheme: light dark; }
+      html { scroll-behavior: smooth; }
+    </style>
+  </head>
+  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/70 backdrop-blur border-b border-slate-200/70 dark:border-slate-800">
+      <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between" aria-label="Primary">
+        <a href="#home" class="flex items-center gap-3">
+          <img src="assets/img/logo.svg" alt="RailAI Logo" class="h-8 w-8" />
+          <span class="text-lg font-semibold tracking-tight">RailAI Control</span>
+        </a>
+        <ul class="hidden md:flex items-center gap-8 text-sm">
+          <li><a class="hover:text-brand-600" href="#solution">Solution</a></li>
+          <li><a class="hover:text-brand-600" href="#how">How it works</a></li>
+          <li><a class="hover:text-brand-600" href="#demo">Demo</a></li>
+          <li><a class="hover:text-brand-600" href="#benefits">Benefits</a></li>
+          <li><a class="hover:text-brand-600" href="#faq">FAQ</a></li>
+        </ul>
+        <a href="#contact" class="inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-white text-sm font-medium shadow hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">Request a demo</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 to-transparent dark:from-slate-900"></div>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">
+              Maximizing Section Throughput with AI‑Powered Precise Train Traffic Control
+            </h1>
+            <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300">
+              Increase trains per hour, stabilize headways, and cut delays with predictive, real‑time optimization across your busiest sections.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#demo" class="inline-flex items-center rounded-md bg-brand-600 px-5 py-3 text-white font-medium shadow hover:bg-brand-700">Try interactive demo</a>
+              <a href="#solution" class="inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 px-5 py-3 font-medium hover:bg-slate-50 dark:hover:bg-slate-900">Explore solution</a>
+            </div>
+            <dl class="mt-10 grid grid-cols-3 gap-6">
+              <div>
+                <dt class="text-xs uppercase tracking-wide text-slate-500">Throughput</dt>
+                <dd class="text-xl font-semibold">+15–30%</dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase tracking-wide text-slate-500">Delay</dt>
+                <dd class="text-xl font-semibold">−20–40%</dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase tracking-wide text-slate-500">Punctuality</dt>
+                <dd class="text-xl font-semibold">↑ reliability</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="relative">
+            <div class="absolute -inset-6 bg-gradient-to-tr from-brand-200/40 to-brand-400/40 blur-2xl rounded-3xl -z-10"></div>
+            <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 shadow-xl p-4">
+              <canvas id="heroChart" class="w-full h-[280px]" aria-label="Throughput vs AI precision chart" role="img"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section id="solution" class="py-16 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h2 class="text-2xl sm:text-3xl font-bold">The solution at a glance</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">
+            RailAI orchestrates precise train movements across constrained sections by forecasting conflicts, optimizing headways, and issuing real‑time control advisories to maintain stable flow and maximize capacity.
+          </p>
+        </div>
+        <div class="mt-10 grid md:grid-cols-3 gap-6">
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900">
+            <h3 class="font-semibold">Predict</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Short‑term forecasts of train arrival times, dwell, and clearance buffers.
+            </p>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900">
+            <h3 class="font-semibold">Optimize</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Solve rolling‑horizon schedules to maintain safe, minimal headways under variability.
+            </p>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900">
+            <h3 class="font-semibold">Control</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Generate speed, dwell, and sequence advisories integrated with existing signaling.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/40">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold">How it works</h2>
+            <ol class="mt-6 space-y-4 text-slate-700 dark:text-slate-300">
+              <li class="flex gap-3">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-600 text-white text-sm font-semibold">1</span>
+                <div>
+                  <p class="font-medium">Data fusion</p>
+                  <p class="text-sm">Telemetry, signaling, and timetable context drive probabilistic arrival predictions.</p>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-600 text-white text-sm font-semibold">2</span>
+                <div>
+                  <p class="font-medium">Rolling optimization</p>
+                  <p class="text-sm">Every few seconds, a safe sequence and target times are recomputed to stabilize headways.</p>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-600 text-white text-sm font-semibold">3</span>
+                <div>
+                  <p class="font-medium">Closed‑loop control</p>
+                  <p class="text-sm">Advisories are sent to drivers or ATO to adjust speed and dwell for smooth flow.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-lg">
+            <h3 class="font-semibold">Safety‑first constraints</h3>
+            <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5">
+              <li>Minimum signal spacing and braking curves respected at all times</li>
+              <li>Platform dwell and clearance buffers enforced</li>
+              <li>Conflict resolution with priorities and knock‑on delay minimization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section id="demo" class="py-16 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h2 class="text-2xl sm:text-3xl font-bold">Interactive demo</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">Adjust inputs to see how AI precision and variability affect trains per hour.</p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-5 gap-6 items-start">
+          <form id="controls" class="lg:col-span-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow">
+            <div class="space-y-6">
+              <div>
+                <label for="headway" class="flex justify-between text-sm font-medium">Base headway (s)
+                  <span id="headwayVal" class="text-slate-500"></span>
+                </label>
+                <input id="headway" name="headway" type="range" min="60" max="300" step="5" value="120" class="w-full" />
+              </div>
+
+              <div>
+                <label for="dwell" class="flex justify-between text-sm font-medium">Dwell time (s)
+                  <span id="dwellVal" class="text-slate-500"></span>
+                </label>
+                <input id="dwell" name="dwell" type="range" min="15" max="90" step="1" value="30" class="w-full" />
+              </div>
+
+              <div>
+                <label for="clearance" class="flex justify-between text-sm font-medium">Clearance buffer (s)
+                  <span id="clearanceVal" class="text-slate-500"></span>
+                </label>
+                <input id="clearance" name="clearance" type="range" min="10" max="60" step="1" value="20" class="w-full" />
+              </div>
+
+              <div>
+                <label for="variability" class="flex justify-between text-sm font-medium">Headway variability (%)
+                  <span id="variabilityVal" class="text-slate-500"></span>
+                </label>
+                <input id="variability" name="variability" type="range" min="0" max="50" step="1" value="20" class="w-full" />
+              </div>
+
+              <div>
+                <label for="ai" class="flex justify-between text-sm font-medium">AI precision factor
+                  <span id="aiVal" class="text-slate-500"></span>
+                </label>
+                <input id="ai" name="ai" type="range" min="0" max="1" step="0.01" value="0.6" class="w-full" />
+              </div>
+            </div>
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <button type="button" id="resetBtn" class="inline-flex items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900">Reset</button>
+              <button type="button" id="randomBtn" class="inline-flex items-center justify-center rounded-md bg-brand-600 px-3 py-2 text-sm font-medium text-white hover:bg-brand-700">Randomize</button>
+            </div>
+          </form>
+
+          <div class="lg:col-span-3 space-y-4">
+            <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow">
+              <canvas id="demoChart" class="w-full h-[320px]" aria-label="Throughput vs AI chart" role="img"></canvas>
+            </div>
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4">
+                <p class="text-xs uppercase tracking-wide text-slate-500">Achievable throughput</p>
+                <p id="kpiThroughput" class="mt-1 text-2xl font-semibold">—</p>
+              </div>
+              <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4">
+                <p class="text-xs uppercase tracking-wide text-slate-500">Effective headway</p>
+                <p id="kpiHeadway" class="mt-1 text-2xl font-semibold">—</p>
+              </div>
+              <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4">
+                <p class="text-xs uppercase tracking-wide text-slate-500">Stability index</p>
+                <p id="kpiStability" class="mt-1 text-2xl font-semibold">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/40">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl font-bold">Benefits</h2>
+        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900">
+            <p class="font-medium">More trains, same infrastructure</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Unlock latent capacity on constrained sections without new tracks.</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900">
+            <p class="font-medium">Resilient operations</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Reduce knock‑on delays and recover faster from perturbations.</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900">
+            <p class="font-medium">Better passenger outcomes</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">More reliable headways, smoother rides, and shorter travel times.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl font-bold">FAQ</h2>
+        <div class="mt-8 divide-y divide-slate-200 dark:divide-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+          <details class="p-6" open>
+            <summary class="cursor-pointer font-medium">Does this replace existing signaling?</summary>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">No. RailAI operates above your existing signaling, issuing advisory controls while respecting all safety constraints.</p>
+          </details>
+          <details class="p-6">
+            <summary class="cursor-pointer font-medium">What is required to get started?</summary>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Telemetry feeds, historic timetable data, and a section model. A pilot can be deployed in weeks.</p>
+          </details>
+          <details class="p-6">
+            <summary class="cursor-pointer font-medium">How do you quantify benefits?</summary>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">We run before/after A/B trials on selected sections, tracking throughput, delay minutes, and on‑time arrival.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="py-16 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-gradient-to-r from-brand-600 to-brand-700 text-white p-8 sm:p-12">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+            <div>
+              <h2 class="text-2xl font-bold">Ready to boost section throughput?</h2>
+              <p class="text-white/90">Request a live demo tailored to your network.</p>
+            </div>
+            <a href="#" class="inline-flex items-center rounded-md bg-white text-brand-700 px-5 py-3 font-semibold shadow hover:bg-white/90">Request a demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-8">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-slate-500">© <span id="year"></span> RailAI Control. All rights reserved.</p>
+        <div class="text-sm text-slate-500">
+          <a href="#" class="hover:text-brand-600">Privacy</a>
+          <span class="mx-2">•</span>
+          <a href="#" class="hover:text-brand-600">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+  </body>
+  </html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
